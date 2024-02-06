@@ -1,0 +1,147 @@
+/*
+------------~~~ TIC - TAC - TOE ~~~--------------------
+~ Developing the existing TIC-TAC-TOE in an easier way.
+~ 1. Importing the Libraries that are necessary.
+~ 2. Providing the Player and the Computer as X and O.
+~ 3. Creating an declaration of Winner.
+~ 4. Creating a void Board for display with numericals.
+*/
+
+// Importing the library packages
+#include <stdio.h>
+#include <conio.h>
+
+char SPACE[10] = { 'o', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+int checkwin();
+void board();
+
+int main()
+{
+    int player = 1, i, moves;
+
+    char mark;
+    do
+    {
+        board();
+        player = (player % 2) ? 1 : 2;
+
+        printf("Player %d, enter a number:  ", player);
+        scanf("%d", &moves);
+
+        mark = (player == 1) ? 'X' : 'O';
+
+        // Using the Else-if concept to fill the matrix
+
+        if (moves == 1 && SPACE[1] == '1')
+            SPACE[1] = mark;
+            
+        else if (moves == 2 && SPACE[2] == '2')
+            SPACE[2] = mark;
+            
+        else if (moves == 3 && SPACE[3] == '3')
+            SPACE[3] = mark;
+            
+        else if (moves == 4 && SPACE[4] == '4')
+            SPACE[4] = mark;
+            
+        else if (moves == 5 && SPACE[5] == '5')
+            SPACE[5] = mark;
+            
+        else if (moves == 6 && SPACE[6] == '6')
+            SPACE[6] = mark;
+            
+        else if (moves == 7 && SPACE[7] == '7')
+            SPACE[7] = mark;
+            
+        else if (moves == 8 && SPACE[8] == '8')
+            SPACE[8] = mark;
+            
+        else if (moves == 9 && SPACE[9] == '9')
+            SPACE[9] = mark;
+            
+        else
+        {
+            printf("Invalid move");
+
+            player--;
+            getch();
+        }
+        i = checkwin();
+
+        player++;
+    }while (i ==  - 1);
+    
+    board();
+    
+    if (i == 1)
+        printf("==>\aPlayer %d win ", --player);
+    else
+        printf("==>\aGame draw");
+
+    getch();
+
+    return 0;
+}
+
+// CLearing the Horizontal, Vertical and Diagonal section in the Matrix
+
+int checkwin()
+{
+    if (SPACE[1] == SPACE[2] && SPACE[2] == SPACE[3])
+        return 1;
+        
+    else if (SPACE[4] == SPACE[5] && SPACE[5] == SPACE[6])
+        return 1;
+        
+    else if (SPACE[7] == SPACE[8] && SPACE[8] == SPACE[9])
+        return 1;
+        
+    else if (SPACE[1] == SPACE[4] && SPACE[4] == SPACE[7])
+        return 1;
+        
+    else if (SPACE[2] == SPACE[5] && SPACE[5] == SPACE[8])
+        return 1;
+        
+    else if (SPACE[3] == SPACE[6] && SPACE[6] == SPACE[9])
+        return 1;
+        
+    else if (SPACE[1] == SPACE[5] && SPACE[5] == SPACE[9])
+        return 1;
+        
+    else if (SPACE[3] == SPACE[5] && SPACE[5] == SPACE[7])
+        return 1;
+        
+    else if (SPACE[1] != '1' && SPACE[2] != '2' && SPACE[3] != '3' &&
+        SPACE[4] != '4' && SPACE[5] != '5' && SPACE[6] != '6' && SPACE[7] 
+        != '7' && SPACE[8] != '8' && SPACE[9] != '9')
+
+        return 0;
+    else
+        return  - 1;
+}
+
+// Creating the Display of the Board
+
+void board()
+{
+    printf("\n\n\tTic Tac Toe\n\n");
+
+    printf("Player 1 (X)  -  Player 2 (O)\n\n\n");
+
+
+    printf("     |     |     \n");
+    printf("  %c  |  %c  |  %c \n", SPACE[1], SPACE[2], SPACE[3]);
+
+    printf("_____|_____|_____\n");
+    printf("     |     |     \n");
+
+    printf("  %c  |  %c  |  %c \n", SPACE[4], SPACE[5], SPACE[6]);
+
+    printf("_____|_____|_____\n");
+    printf("     |     |     \n");
+
+    printf("  %c  |  %c  |  %c \n", SPACE[7], SPACE[8], SPACE[9]);
+
+    printf("     |     |     \n\n");
+}
